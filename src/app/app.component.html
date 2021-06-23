@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="form" (ngSubmit)="solve()">
+      <div class="row mt-3">
+        <div class="col-md-1 offset-4">
+          <input
+            type="text"
+            name="benchmark"
+            [formControl]="form.controls.benchmark"
+          />
+        </div>
+        <div class="col-md-2">
+          <button type="submit">Solve</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="solutionFound">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Constraints</h3>
+      <div *ngFor="let constraint of sharedDataService.constraints">
+        <div class="row">
+          <div *ngFor="let expressions of constraint.expressions">
+            + {{ expressions.coefficient }}{{ expressions.variable }}
+          </div>
+          >= {{ constraint.constraint }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>Objective Function</h3>
+      <div class="row">
+        <div *ngFor="let expression of sharedDataService.objFunc.expressions">
+          + {{ expression.coefficient }}{{ expression.variable }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">Solution: {{ - result.finalFunctionValue }}</div>
+    <div class="col-md-3">
+      <p *ngFor="let v of result.valueForEachVariable">
+        {{ v }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
