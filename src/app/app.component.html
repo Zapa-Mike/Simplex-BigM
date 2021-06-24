@@ -12,7 +12,10 @@
         <div class="col-md-2">
           <button type="submit">Solve</button>
         </div>
-      </div>
+        
+          <div class="col-md-3"><b>Solution:</b> {{ - result.finalFunctionValue }}</div>
+        </div>
+        
     </form>
   </div>
 </div>
@@ -37,11 +40,8 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">Solution: {{ - result.finalFunctionValue }}</div>
-    <div class="col-md-3">
+    <div>
+      <h3>X Value coefficients</h3>
       <p *ngFor="let v of result.valueForEachVariable">
         {{ v }}
       </p>
